@@ -1,0 +1,133 @@
+#mainsidebody{
+    height:100%;
+    display:flex;
+}
+
+#left{
+    width:25%;
+    background-color: #d4d6e5;
+    padding-right:5%;
+    padding-left:5%;
+}
+
+#lefttop{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 31px;
+}
+
+#abbox{
+    background-color: rgb(91, 84, 227);
+    color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 5px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#horseleft{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+}
+
+#lefttext{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#leftside{
+    display: flex;
+    width: 42%;
+    justify-content: space-between;
+}
+
+#leftbox{
+    display:flex;
+
+}
+
+.midleftbody{
+    margin-top: 18px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+    height: 45px;
+    border-radius: 10px;
+    display:flex;
+    justify-content: space-around;
+}
+
+#midlelefttop{
+    border: 3px dotted purple;
+}
+
+.newType{
+    
+    padding-bottom: 0px;
+    margin-top: 12px;
+    font-weight: 300;
+    color: purple;
+
+}
+
+#midleftbody2{
+    display:flex;
+    justify-content: space-between;
+}
+
+#images{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+    width: 65px;
+
+}
+
+.newTypet{
+    margin-top: 2px;
+    padding-top: 11px;  
+}
+
+#midrightbody{
+    background-color: #ebeefd;
+    width: 100%;
+    padding-right:5%;
+    padding-left:5%;
+    
+}
+
+.midleftbody2{
+    margin-top: 18px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+    height: 45px;
+    border-radius: 10px;
+    display:flex;
+    justify-content: space-between;
+}
+
+#headername{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 3em;
+    display:flex;
+}
+
+#imgid{
+    display:flex;
+    align-items: center;
+}
+
+#headingname{
+    margin-right: 10px;
+}
