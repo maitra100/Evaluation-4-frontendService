@@ -46,7 +46,7 @@ function LoginUser() {
         <label className="inputLabel" htmlFor="password">
           Password
         </label>
-        <input className="detailInput" type="text" onChange={changePassword} value={password} />
+        <input className="detailInput" type="password" onChange={changePassword} value={password} />
       </div>
       <div id="submitButton">
         <button id="submit" type="submit" onClick={validateUser}>
