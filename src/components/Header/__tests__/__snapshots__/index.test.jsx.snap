@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Section renders correctly 1`] = `
+<div
+  id="header"
+>
+  <p
+    id="headertext"
+  />
+</div>
+`;

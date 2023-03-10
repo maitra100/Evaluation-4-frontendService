@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Section renders correctly 1`] = `
+<div
+  id="frontpage"
+>
+  <div
+    id="loginLeft"
+  >
+    <div
+      id="text1"
+    >
+      Design APIs fast,
+    </div>
+    <div
+      id="text2"
+    >
+      Manage content easily
+    </div>
+    <img
+      alt="frontpic"
+      id="frontimage"
+      src="frontpic.png"
+    />
+  </div>
+  <div
+    id="loginRight"
+  >
+    <div
+      id="loginText"
+    >
+      <strong>
+        Login to your CMS+ account
+      </strong>
+    </div>
+    <div
+      className="loginUser"
+    >
+      <label
+        className="inputLabel"
+        htmlFor="email"
+      >
+        Email
+      </label>
+      <input
+        className="detailInput"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <label
+        className="inputLabel"
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="detailInput"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      id="submitButton"
+    >
+      <button
+        id="submit"
+        onClick={[Function]}
+        type="submit"
+      >
+        Login
+      </button>
+    </div>
+    <div
+      id="forgot"
+    >
+      <a>
+        Forgot password
+      </a>
+    </div>
+    <div
+      id="forgot"
+    >
+      <a
+        onClick={[Function]}
+      >
+        Register instead
+      </a>
+    </div>
+  </div>
+</div>
+`;
