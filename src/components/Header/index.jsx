@@ -1,12 +1,17 @@
 import React from 'react';
 import './header.css';
+import PropTypes from 'prop-types';
 
-function Header() {
+function Header({ heading }) {
   return (
     <div id="header">
-      <p id="headertext">Content Types</p>
+      <p id="headertext">{heading}</p>
     </div>
   );
 }
+
+Header.propTypes = {
+  heading: PropTypes.string.isRequired,
+};
 
 export default Header;

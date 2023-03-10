@@ -1,0 +1,44 @@
+#lastbody{
+    height: 100%;
+    width: 86%;
+    background-color: #d4d6e5;
+    padding-left: 7%;
+    padding-right: 7%;
+}
+
+#entries{
+    display: flex;
+    justify-content: space-between;
+    font-size: 3vw;
+}
+
+#entryheading{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#attris{
+    display:flex;
+    justify-content: space-around;
+}
+
+#addentry{
+    display:flex;
+    align-items: center;
+    color:rgb(56, 4, 56);
+    font-size: 1.4vw;
+}
+
+.entrybody{
+    display:flex;
+    justify-content: space-between;
+}
+
+#indibox{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

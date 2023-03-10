@@ -3,11 +3,49 @@
     display:flex;
 }
 
+#modalheader{
+    margin-top:10px;
+    margin-bottom:25px;
+}
+
+#modalinput{
+    width: 389px;
+    margin-top: 8px;
+    height: 25px;
+    border-radius: 7px;
+    margin-bottom:25px;
+}
+
+#cancelbutton{
+    margin: 10px;
+    border-radius: 0;
+    background-color: white;
+    border-color: white;
+    height: 25px;
+    width: 73px;
+}
+
+#createbutton{
+    height: 42px;
+    width: 82px;
+    background-color: purple;
+    border-radius: 8px;
+    color: white;
+}
+
+#buttons{
+    display:flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
 #left{
     width:25%;
     background-color: #d4d6e5;
     padding-right:5%;
     padding-left:5%;
+    height:100%;
+    overflow:auto;
 }
 
 #lefttop{
