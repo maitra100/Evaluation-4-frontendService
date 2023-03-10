@@ -11,14 +11,20 @@ function CollectionTypeBody({ id }) {
   const [jsonObj, setJsonObj] = useState(undefined);
 
   useEffect(() => {
-    axios.get(`http://localhost:8081/content-type-entry/${id}`).then(res => {
-      setCollectionType(res.data);
-      const obj = JSON.parse(res.data[0].values);
-      const keys = Object.keys(obj);
-      const newKeys = ['ID'].concat(keys);
-      newKeys.push('Actions');
-      setJsonObj(newKeys);
-    });
+    axios
+      .get(`http://localhost:8081/content-type-entry/${id}`, {
+        headers: {
+          token: localStorage.getItem('token'),
+        },
+      })
+      .then(res => {
+        setCollectionType(res.data);
+        const obj = JSON.parse(res.data[0].values);
+        const keys = Object.keys(obj);
+        const newKeys = ['ID'].concat(keys);
+        newKeys.push('Actions');
+        setJsonObj(newKeys);
+      });
   }, [id]);
   return (
     <div id="lastbody">

@@ -25,9 +25,16 @@ function Dashboard() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8081/content-type').then(res => {
-      setContentTypes(res.data);
-    });
+    const token = localStorage.getItem('token');
+    axios
+      .get('http://localhost:8081/content-type', {
+        headers: {
+          token: token,
+        },
+      })
+      .then(res => {
+        setContentTypes(res.data);
+      });
   }, []);
   return (
     <div id="mainbody">

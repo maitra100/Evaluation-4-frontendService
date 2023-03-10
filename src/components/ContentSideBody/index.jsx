@@ -40,31 +40,72 @@ function ContentSideBody() {
   }
 
   function addAttribute(name) {
-    axios.put('http://localhost:8081/add-attribute', { name: name, attribute: modalInputAttribute }).then(res => {
-      console.log(res.data);
-    });
-    axios.get(`http://localhost:8081/content-type/${name}`).then(res => {
-      setCurrentContentType(res.data);
-    });
+    const token = localStorage.getItem('token');
+    axios
+      .put(
+        'http://localhost:8081/add-attribute',
+        { name: name, attribute: modalInputAttribute },
+        {
+          headers: {
+            token: token,
+          },
+        }
+      )
+      .then(res => {
+        console.log(res.data);
+      });
+    axios
+      .get(`http://localhost:8081/content-type/${name}`, {
+        headers: {
+          token: token,
+        },
+      })
+      .then(res => {
+        setCurrentContentType(res.data);
+      });
+
     setModalOpenTwo(false);
+    window.location.reload();
   }
 
   function changeContentType(name) {
-    axios.get(`http://localhost:8081/content-type/${name}`).then(res => {
-      setCurrentContentType(res.data);
-    });
+    const token = localStorage.getItem('token');
+    axios
+      .get(`http://localhost:8081/content-type/${name}`, {
+        headers: {
+          token: token,
+        },
+      })
+      .then(res => {
+        setCurrentContentType(res.data);
+      });
   }
 
   function addContentType() {
-    axios.post('http://localhost:8081/content-type', { name: modalInput }).then(res => {
-      setContentTypes([...contentTypes, res.data]);
-    });
+    axios
+      .post(
+        'http://localhost:8081/content-type',
+        { name: modalInput },
+        {
+          headers: {
+            token: localStorage.getItem('token'),
+          },
+        }
+      )
+      .then(res => {
+        setContentTypes([...contentTypes, res.data]);
+      });
     setModalOpen(false);
+    window.location.reload();
   }
 
   function deleteAttributeName(id, attribute) {
     axios
-      .delete(`http://localhost:8081/delete-attribute/${id}/${attribute}`)
+      .delete(`http://localhost:8081/delete-attribute/${id}/${attribute}`, {
+        headers: {
+          token: localStorage.getItem('token'),
+        },
+      })
       .then(res => {
         console.log(res.data);
       })
@@ -73,9 +114,19 @@ function ContentSideBody() {
   }
 
   function editContentTypeName(id) {
-    axios.put('http://localhost:8081/edit-content-type-name', { id: id, newName: modalInput }).then(res => {
-      console.log(res.data);
-    });
+    axios
+      .put(
+        'http://localhost:8081/edit-content-type-name',
+        { id: id, newName: modalInput },
+        {
+          headers: {
+            token: localStorage.getItem('token'),
+          },
+        }
+      )
+      .then(res => {
+        console.log(res.data);
+      });
     window.location.reload();
     // axios.get(`http://localhost:8081/content-type/${name}`).then(res => {
     //   setCurrentContentType(res.data);
@@ -84,10 +135,16 @@ function ContentSideBody() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8081/content-type').then(res => {
-      setContentTypes(res.data);
-      console.log(contentTypes);
-    });
+    axios
+      .get('http://localhost:8081/content-type', {
+        headers: {
+          token: localStorage.getItem('token'),
+        },
+      })
+      .then(res => {
+        setContentTypes(res.data);
+        console.log(contentTypes);
+      });
   }, []);
   return (
     <div id="mainsidebody">
