@@ -10,6 +10,15 @@ function CollectionTypeBody({ id }) {
   const [collectionType, setCollectionType] = useState(undefined);
   const [jsonObj, setJsonObj] = useState(undefined);
 
+  function deleteContentTypeEntry(id) {
+    axios.delete(`http://localhost:8081/delete-content-type-entry/${id}`, {
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+    });
+    // window.location.reload();
+  }
+
   useEffect(() => {
     axios
       .get(`http://localhost:8081/content-type-entry/${id}`, {
@@ -50,16 +59,22 @@ function CollectionTypeBody({ id }) {
                   console.log(detail);
                   return (
                     <div id="detailed" key={4}>
-                      {detail}
+                      {detail ? detail : 'null'}
                     </div>
                   );
                 })}
-                <div>
-                  <div>
-                    <img src={edit} alt="edit" width="15px" height="15px" />
+                <div id="lastimg">
+                  <div id="firstlastimg">
+                    <img src={edit} alt="edit" width="20px" height="20px" />
                   </div>
-                  <div>
-                    <img src={deletePic} alt="delete" width="15px" height="15px" />
+                  <div id="lastlastimg">
+                    <img
+                      src={deletePic}
+                      alt="delete"
+                      width="20px"
+                      height="20px"
+                      onClick={() => deleteContentTypeEntry(entry.id)}
+                    />
                   </div>
                 </div>
               </div>
