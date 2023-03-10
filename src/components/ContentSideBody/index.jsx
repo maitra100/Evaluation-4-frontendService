@@ -26,8 +26,6 @@ function ContentSideBody() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenTwo, setModalOpenTwo] = useState(false);
   const [modalOpenThree, setModalOpenThree] = useState(false);
-  // const [modalOpenFour, setModalOpenFour] = useState(false);
-  // const [modalOpenFive, setModalOpenFive] = useState(false);
   const [modalInput, setModalInput] = useState('');
   const [modalInputAttribute, setModalInputAttribute] = useState('');
 
@@ -143,7 +141,6 @@ function ContentSideBody() {
       })
       .then(res => {
         setContentTypes(res.data);
-        console.log(contentTypes);
       });
   }, []);
   return (

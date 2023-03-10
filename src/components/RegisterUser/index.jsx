@@ -11,7 +11,6 @@ function RegisterUser() {
 
   function changeEmail(e) {
     setEmail(e.target.value);
-    console.log(e.target.value);
   }
 
   function changePassword(e) {

@@ -16,7 +16,6 @@ function CollectionTypeBody({ id }) {
         token: localStorage.getItem('token'),
       },
     });
-    // window.location.reload();
   }
 
   useEffect(() => {
