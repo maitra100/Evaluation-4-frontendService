@@ -12,8 +12,10 @@ function Dashboard() {
   const [mainBody, setMainBody] = useState(false);
   const [collectionId, setCollectionId] = useState(undefined);
   const [collectionName, setCollectionName] = useState(undefined);
+  const [stat,setStat]=useState(true);
 
   function switchCollectionType(id, name) {
+    setStat(!stat);
     setMainBody(false);
     setCollectionId(id);
     setCollectionName(name);
@@ -64,17 +66,17 @@ function Dashboard() {
       <div id="rightBody">
         {mainBody ? (
           <div id="rightBody">
+            {console.log(contentTypes)}
             <Header heading={'Content Type'} />
-            <ContentSideBody />
+            <ContentSideBody setContentTypes={setContentTypes} contentTypes={contentTypes}/>
           </div>
         ) : null}
-        {collectionId ? (
+        {collectionId && (
           <div id="rightBody">
-            {console.log(collectionId)}
             <Header heading={collectionName} />
-            <CollectionTypeBody id={collectionId} />
+            <CollectionTypeBody id={collectionId} name={collectionName} setStat={setStat} stat={stat} />
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );

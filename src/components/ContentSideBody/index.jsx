@@ -1,6 +1,7 @@
 import React from 'react';
 import './contentsidebody.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import search from '../../assets/Images/search.png';
 import axios from 'axios';
 import rename from '../../assets/Images/rename.png';
@@ -20,14 +21,15 @@ const customStyles = {
   },
 };
 
-function ContentSideBody() {
-  const [contentTypes, setContentTypes] = useState([]);
+function ContentSideBody({setContentTypes,contentTypes}) {
   const [currentContentType, setCurrentContentType] = useState(undefined);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenTwo, setModalOpenTwo] = useState(false);
   const [modalOpenThree, setModalOpenThree] = useState(false);
+  const [modalOpenFour, setModalOpenFour] = useState(false);
   const [modalInput, setModalInput] = useState('');
   const [modalInputAttribute, setModalInputAttribute] = useState('');
+  const [oldA,setOldA] = useState(' ');
 
   function changeInputAttribute(e) {
     setModalInputAttribute(e.target.value);
@@ -35,6 +37,24 @@ function ContentSideBody() {
 
   function changeInput(e) {
     setModalInput(e.target.value);
+  }
+
+  function updateAttribute(name,oldAttribute){
+    axios
+      .put(
+        'http://localhost:8081/update-attribute',
+        { name: name, oldAttribute: oldAttribute,newAttribute:modalInputAttribute },
+        {
+          headers: {
+            token: localStorage.getItem('token'),
+          },
+        }
+      )
+      .then(res => {
+        console.log(res);
+        changeContentType(name);
+        setModalOpenFour(false);
+      });
   }
 
   function addAttribute(name) {
@@ -51,19 +71,18 @@ function ContentSideBody() {
       )
       .then(res => {
         console.log(res.data);
+        axios
+          .get('http://localhost:8081/content-type', {
+            headers: {
+              token: localStorage.getItem('token'),
+            },
+          })
+          .then(res => {
+            setContentTypes(res.data);
+          });
+        changeContentType(name);
       });
-    axios
-      .get(`http://localhost:8081/content-type/${name}`, {
-        headers: {
-          token: token,
-        },
-      })
-      .then(res => {
-        setCurrentContentType(res.data);
-      });
-
     setModalOpenTwo(false);
-    window.location.reload();
   }
 
   function changeContentType(name) {
@@ -94,7 +113,6 @@ function ContentSideBody() {
         setContentTypes([...contentTypes, res.data]);
       });
     setModalOpen(false);
-    window.location.reload();
   }
 
   function deleteAttributeName(id, attribute) {
@@ -106,9 +124,18 @@ function ContentSideBody() {
       })
       .then(res => {
         console.log(res.data);
+        axios
+          .get('http://localhost:8081/content-type', {
+            headers: {
+              token: localStorage.getItem('token'),
+            },
+          })
+          .then(res => {
+            setContentTypes(res.data);
+          });
+        changeContentType(currentContentType.name);
       })
       .catch(err => console.log(err));
-    window.location.reload();
   }
 
   function editContentTypeName(id) {
@@ -123,16 +150,9 @@ function ContentSideBody() {
         }
       )
       .then(res => {
-        console.log(res.data);
+        console.log(res.data, 'edit');
       });
-    window.location.reload();
-    // axios.get(`http://localhost:8081/content-type/${name}`).then(res => {
-    //   setCurrentContentType(res.data);
-    // });
-    setModalOpenThree(false);
-  }
 
-  useEffect(() => {
     axios
       .get('http://localhost:8081/content-type', {
         headers: {
@@ -142,7 +162,9 @@ function ContentSideBody() {
       .then(res => {
         setContentTypes(res.data);
       });
-  }, []);
+    setModalOpenThree(false);
+    changeContentType(modalInput);
+  }
   return (
     <div id="mainsidebody">
       <div id="left">
@@ -242,7 +264,27 @@ function ContentSideBody() {
                   </div>
                 </div>
                 <div id="images">
-                  <img src={edit} alt="edit" width="20px" height="20px" />
+                  <img src={edit} alt="edit" width="20px" height="20px" onClick={()=>{
+                    setOldA(attribute);
+                    setModalOpenFour(true);
+                  }} />
+                  <Modal isOpen={modalOpenFour} onRequestClose={() => setModalOpenFour(false)} style={customStyles}>
+                    <div id="modalBox">
+                      <div id="modalheader">
+                        <b>{oldA}</b>
+                      </div>
+                      <div>Attribute to be added</div>
+                      <input id="modalinput" onChange={changeInputAttribute} value={modalInputAttribute} placeholder="Input" />
+                      <div id="buttons">
+                        <button id="cancelbutton" onClick={() => setModalOpenFour(false)}>
+                  Cancel
+                        </button>
+                        <button id="createbutton" onClick={() => updateAttribute(currentContentType.name,oldA)}>
+                  Edit
+                        </button>
+                      </div>
+                    </div>
+                  </Modal>
                   <img
                     src={deletePic}
                     alt="delete"
@@ -259,5 +301,11 @@ function ContentSideBody() {
     </div>
   );
 }
+
+ContentSideBody.propTypes = {
+  setContentTypes: PropTypes.func,
+  contentTypes:PropTypes.array
+};
+
 
 export default ContentSideBody;
